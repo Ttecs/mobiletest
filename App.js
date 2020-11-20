@@ -1,21 +1,41 @@
-import { StatusBar } from 'expo-status-bar';
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+// In App.js in a new project
 
-export default function App() {
+
+// In App.js in a new project
+
+import * as React from 'react';
+import { View, Text,Button } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+import { createDrawerNavigator } from '@react-navigation/drawer';
+import MainTabScreen from './Screens/Maintabscreen';
+
+import PageScreen from './Screens/PageScreen';
+import Icon from 'react-native-vector-icons/Ionicons'
+import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
+
+
+const Drawer = createDrawerNavigator();
+
+
+
+
+
+
+
+
+
+
+function App() {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <NavigationContainer>
+    
+     <Drawer.Navigator initialRouteName="Home">
+        <Drawer.Screen name="Home" component={MainTabScreen} />
+        {/*<Drawer.Screen name="Details" component={DetailStackScreen} />*/}
+      </Drawer.Navigator>
+    </NavigationContainer>
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+export default App;
