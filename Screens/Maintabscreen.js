@@ -105,4 +105,3 @@ const DetailsStackScreen = ({navigation}) => (
         }} />
 </DetailsStack.Navigator>
 );
-  

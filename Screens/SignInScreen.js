@@ -66,12 +66,12 @@ const SignInScreen = ({navigation}) => {
   console.log(data.password)
  return (
       <View style={styles.container}>
-          <StatusBar backgroundColor='#009387' barStyle='light-content'/>
+          <StatusBar backgroundColor='#434a54' barStyle='light-content'/>
           <View style={styles.header}>
-            <Text style={styles.text_header}>Welcome</Text>
+            <Text style={styles.text_header}>             Welcome</Text>
           </View>
           <Animatable.View style={styles.footer} animation="fadeInUpBig">
-            <Text style={styles.text_footer}>email</Text>
+            <Text style={styles.text_footer}>Email</Text>
             <View style={styles.action}>
                 <FontAwesome name="user-o" color="black" size={25}/>
                 <TextInput
@@ -79,13 +79,13 @@ const SignInScreen = ({navigation}) => {
                   style={styles.textInput}
                   onChangeText={(val)=>textInputChange(val)}
                 />
-                {data.check_textInputChange ?
+                {/* {data.check_textInputChange ?
                 <Feather
                  name="check-circle"
                  color="black"
                  size={20}
                 />
-                :null}
+                :null} */}
             </View>
             <Text style={[styles.text_footer,{marginTop:35}]}>Password</Text>
             <View style={styles.action}>
@@ -96,7 +96,7 @@ const SignInScreen = ({navigation}) => {
                   secureTextEntry={data.secureTextEntry ? true:false}
                   onChangeText={(val)=>handlePasswordChange(val)}
                 />
-                <TouchableOpacity 
+                {/* <TouchableOpacity 
                 onPress={updateSecureTextEntry}
                 >
                     {data.secureTextEntry ?
@@ -110,22 +110,18 @@ const SignInScreen = ({navigation}) => {
                 color="black"
                 size={20}
                />}
-                </TouchableOpacity>
+                </TouchableOpacity> */}
             </View>
             <View style={styles.button}>
                 <TouchableOpacity style={styles.signIn} onPress={() =>{loginHandle(data.userName,data.password)}}>
                 <LinearGradient
-                  colors={['#08d4c4','#01ab9d']}
+                  colors={['#434a54','#c5c9d9']}
                   style={styles.signIn}
                 >
-                    <Text style={styles.textSign,{color:'#ffff'}}>Sign In</Text>
+                    <Text style={[styles.textSign,{color:'#ffff'}]}>Sign In</Text>
                 </LinearGradient>
                 </TouchableOpacity>
-                <TouchableOpacity onPress={() =>navigation.navigate('SignUpScreen')} 
-
-                style={[styles.signIn,{borderColor:'#009387',borderWidth:1,marginTop:15}]}>
-                    <Text style={styles.textSign}>Sign Up</Text>
-                </TouchableOpacity>
+             
             </View>
           </Animatable.View>
         
@@ -138,7 +134,7 @@ export default SignInScreen;
 const styles = StyleSheet.create({
     container: {
       flex: 1, 
-      backgroundColor: '#009387'
+      backgroundColor: '#434a54'
     },
     header: {
         flex: 1,
@@ -147,10 +143,10 @@ const styles = StyleSheet.create({
         paddingBottom: 50
     },
     footer: {
-        flex: 3,
+        flex: 4,
         backgroundColor: '#fff',
-        borderTopLeftRadius: 30,
-        borderTopRightRadius: 30,
+        borderTopLeftRadius: 20,
+        borderTopRightRadius: 20,
         paddingHorizontal: 20,
         paddingVertical: 30
     },

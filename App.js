@@ -7,15 +7,18 @@ import * as React from 'react';
 import { View, Text,Button } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createDrawerNavigator } from '@react-navigation/drawer';
-import RootStackScreen from './Screens/RootStackScreen';
+import RootStackScreen from './Screens/StackScreens/RootStackScreen';
 import { ActivityIndicator } from 'react-native-paper';
 import AuthContext from './components/context'
 import MainTabScreen from './Screens/MainTabScreen'
 import SupportScreen from './Screens/SupportScreen';
 import SettingsScreen from './Screens/SettingsScreen';
-import BookmarkScreen from './Screens/BookmarkScreen';
+import BookmarkScreen from './Screens/Reservation';
 import DrawerContent from './Screens/DrawerContent';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import HomeStackScreen from './Screens/StackScreens/HomeStackScreen';
+import DetailsStackScreen from './Screens/StackScreens/DetailStackScreen';
+import ReservationStackScreen from './Screens/StackScreens/ReservationStackScreen'
 
 const Drawer = createDrawerNavigator();
  
@@ -127,10 +130,11 @@ const initialLoginState={
       {loginState.userToken !== null ?(
    
     <Drawer.Navigator drawerContent={props=><DrawerContent {...props}/>}>
-       <Drawer.Screen name="HomeDrawer" component={MainTabScreen} />
-          <Drawer.Screen name="SupportScreen" component={SupportScreen} />
+          <Drawer.Screen name="HomeDrawer" component={HomeStackScreen} />
+          <Drawer.Screen name="userDetails" component={DetailsStackScreen} />
+          <Drawer.Screen name="reservation" component={ReservationStackScreen} />
           <Drawer.Screen name="SettingsScreen" component={SettingsScreen} />
-          <Drawer.Screen name="BookmarkScreen" component={BookmarkScreen} />
+         
       </Drawer.Navigator> )
      : <RootStackScreen/>
      }
