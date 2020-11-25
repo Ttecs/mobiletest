@@ -6,31 +6,56 @@ import {
     TextInput,
     Platform,
     StyleSheet ,
-  
+    
     StatusBar,
     Alert
 } from 'react-native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import { LinearGradient } from 'expo-linear-gradient';
 import * as Animatable from 'react-native-animatable';
 import {FontAwesome,Feather} from 'react-native-vector-icons';
 import AuthContext from '../components/context'
-
+import DetailsScreen from './DetailsScreen'
 const SignInScreen = ({navigation}) => {
 
+    const [data1, setData1] = React.useState([]);
+        
+      React.useEffect(() => {
+        fetch('https://alphax-api.azurewebsites.net/api/tourguides')
+          .then((response) => response.json())
+          .then((json) => setData1(json))
+          .catch((error) => console.error(error))
+          
+      }, []);
+
+     
+      
+   const  _storeData = async () => {
+        try {
+          await AsyncStorage.setItem(
+            data1,
+          );
+        } catch (error) {
+          // Error saving data
+        }
+      };
+
+
     
-
-
-
     const[data,setData]=React.useState({
         userName:'',
         password:'',
         check_textInputChange:false,
-        secureTextEntry:true
+        secureTextEntry:true,
+        condition:null
+
     });
     
     const {signIn}=React.useContext(AuthContext);
+   
 
     const textInputChange=(val)=>{
+        
         if(val.length !== 0){
             setData({
                 ...data,
@@ -38,6 +63,7 @@ const SignInScreen = ({navigation}) => {
                 check_textInputChange:true
             })
         }else{
+           
             setData({
                 ...data,
                 emal:val,
@@ -46,6 +72,7 @@ const SignInScreen = ({navigation}) => {
         }
     }
     const handlePasswordChange=(val)=>{
+      
         setData({
             ...data,
            password:val,
@@ -61,12 +88,36 @@ const SignInScreen = ({navigation}) => {
            
         })
     }
-
+    const call=()=>{return(data1)};
+   let condition;
+   let i=0
     const loginHandle=(userName,password)=>{
-        signIn(userName,password);
+        
+        return(
+     
+          
+           data1 && data1.filter(
+               person=>person.guideId===userName && person.name===password).map(
+                   (Aname)=>{
+                       return(
+                           signIn(true),
+                            navigation.navigate('DetailsScreen', {
+                                itemId: Aname.name
+                          })
+                           
+                           )}) 
+            // condition = true;
+           
+           
+            
+           
+           )  
+                
+           
+     
 
     }
-
+    
   console.log(data.userName)
   console.log(data.password)
  return (

@@ -32,7 +32,7 @@ const LeftContent = props => <Avatar.Icon {...props} icon="home" />
 
 const MyComponent = () => (
   <Card>
-    <Card.Title title="Card Title" subtitle="Card Subtitle" left={LeftContent} />
+    <Card.Title title="ADs" subtitle="Card Subtitle" left={LeftContent} />
     <Card.Content>
       <Title></Title>
       <Paragraph>Card content</Paragraph>

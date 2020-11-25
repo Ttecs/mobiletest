@@ -2,7 +2,9 @@ import React from 'react';
 import { View, Text, Button, StyleSheet } from 'react-native';
 import { Avatar, Accessory } from 'react-native-elements';
 import * as Animatable from 'react-native-animatable';
-const DetailsScreen = ({navigation}) => {
+import AuthContext from '../components/context'
+const DetailsScreen = ({route, navigation}) => {
+
     return (
       <View style={styles.container}>
         <View style={styles.header}>
@@ -13,7 +15,7 @@ const DetailsScreen = ({navigation}) => {
         </View>
         <Animatable.View  animation="fadeInUpBig" style={styles.footer}>
           <View style={styles.text_detail}>
-          <Text style={styles.text_footer}>Name           :</Text>
+          <Text style={styles.text_footer}>Name           : </Text>
           <Text style={styles.text_footer}>Email            :</Text>
           <Text style={styles.text_footer}>Contact No  :</Text>
           <Text style={styles.text_footer}>Adress          :</Text>

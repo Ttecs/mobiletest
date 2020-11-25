@@ -28,17 +28,17 @@ function App() {
   // const [isLoading,setIsLoading]=React.useState(true);
   // const [userToken,setUserToken]=React.useState(null);
   
-  const [isLoading, setLoading] = React.useState(true);
-  const [data1, setData1] = React.useState([]);
-      let i=0;
-    React.useEffect(() => {
-      fetch('https://reactnative.dev/movies.json')
-        .then((response) => response.json())
-        .then((json) => setData1(json.movies))
-        .catch((error) => console.error(error))
-        .finally(() => setLoading(false));
-    }, []);
-    
+  // const [isLoading, setLoading] = React.useState(true);
+  // const [data1, setData1] = React.useState([]);
+  //     let i=0;
+  //   React.useEffect(() => {
+  //     fetch('https://alphax-api.azurewebsites.net/api/tourguides')
+  //       .then((response) => response.json())
+  //       .then((json) => setData1(json.movies))
+  //       .catch((error) => console.error(error))
+  //       .finally(() => setLoading(false));
+  //   }, []);
+ 
    
 const initialLoginState={
    isLoading:true,
@@ -88,23 +88,23 @@ const initialLoginState={
     
     {
     
-    signIn:async(userName,password)=>{
-      console.log(data1)
+    signIn:async(condition)=>{
+      
       // setUserToken('false');
       // setIsLoading(false);
       
       let userToken;
       userToken=null;
-     for(i;i<10;i++){
-       if(userName===data1[i].id){
+    //  for(i;i<10;i++){
+    //    if(userName===data1[i].id){
          
-         break;
-       }
-       else continue;
-     }
-      console.log('user name',data1[i].id)
-      console.log('pass',data1[i].releaseYear)
-      if(userName ===data1[i].id && password===data1[i].releaseYear){
+    //      break;
+    //    }
+    //    else continue;
+    //  }
+      //  console.log('user name',data1[0].id)
+      //  console.log('pass',data1[0].releaseYear)
+      if(condition==true){
         
         try {
           userToken='fksjf';
@@ -114,10 +114,10 @@ const initialLoginState={
         }
       }
       console.log('user token',userToken);
-      dispatch({type:'LOGIN', id: userName,token: userToken});
+      dispatch({type:'LOGIN', token: userToken});
     },
     signOut:async()=>{
-      console.log('signOut',data1)
+      
       // setUserToken(null);
       // setIsLoading(false);
       try {
@@ -165,8 +165,9 @@ const initialLoginState={
       {loginState.userToken !== null ?(
   
     <Drawer.Navigator drawerContent={props=><DrawerContent {...props}/>}>
+            <Drawer.Screen name="userDetails" component={DetailsStackScreen} />
           <Drawer.Screen name="HomeDrawer" component={HomeStackScreen} />
-          <Drawer.Screen name="userDetails" component={DetailsStackScreen} />
+        
           <Drawer.Screen name="reservation" component={ReservationStackScreen} />
           <Drawer.Screen name="SettingsScreen" component={SettingsScreen} />
          
