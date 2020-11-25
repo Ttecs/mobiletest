@@ -16,6 +16,11 @@ import {FontAwesome,Feather} from 'react-native-vector-icons';
 import AuthContext from '../components/context'
 
 const SignInScreen = ({navigation}) => {
+
+    
+
+
+
     const[data,setData]=React.useState({
         userName:'',
         password:'',

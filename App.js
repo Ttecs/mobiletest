@@ -19,21 +19,37 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import HomeStackScreen from './Screens/StackScreens/HomeStackScreen';
 import DetailsStackScreen from './Screens/StackScreens/DetailStackScreen';
 import ReservationStackScreen from './Screens/StackScreens/ReservationStackScreen'
+import ReservationScreen from './Screens/Reservation'
 
 const Drawer = createDrawerNavigator();
+
  
 function App() {
   // const [isLoading,setIsLoading]=React.useState(true);
   // const [userToken,setUserToken]=React.useState(null);
   
+  const [isLoading, setLoading] = React.useState(true);
+  const [data1, setData1] = React.useState([]);
+      let i=0;
+    React.useEffect(() => {
+      fetch('https://reactnative.dev/movies.json')
+        .then((response) => response.json())
+        .then((json) => setData1(json.movies))
+        .catch((error) => console.error(error))
+        .finally(() => setLoading(false));
+    }, []);
+    
+   
 const initialLoginState={
    isLoading:true,
    userName:null,
-   userToken:null
+   userToken:null,
+   
 
  };
   
  const loginReducer=(prevState,action)=>{
+  
    switch(action.type){
      case 'RETRIVE_TOKEN':
        return{
@@ -67,14 +83,28 @@ const initialLoginState={
 
  };
  const[loginState,dispatch]=React.useReducer(loginReducer,initialLoginState)
-
-  const authContext=React.useMemo(()=>({
+ 
+  const authContext=React.useMemo(()=>( 
+    
+    {
+    
     signIn:async(userName,password)=>{
+      console.log(data1)
       // setUserToken('false');
       // setIsLoading(false);
+      
       let userToken;
       userToken=null;
-      if(userName ==='user' && password==='pass'){
+     for(i;i<10;i++){
+       if(userName===data1[i].id){
+         
+         break;
+       }
+       else continue;
+     }
+      console.log('user name',data1[i].id)
+      console.log('pass',data1[i].releaseYear)
+      if(userName ===data1[i].id && password===data1[i].releaseYear){
         
         try {
           userToken='fksjf';
@@ -87,6 +117,7 @@ const initialLoginState={
       dispatch({type:'LOGIN', id: userName,token: userToken});
     },
     signOut:async()=>{
+      console.log('signOut',data1)
       // setUserToken(null);
       // setIsLoading(false);
       try {
@@ -119,16 +150,20 @@ const initialLoginState={
 
   if (loginState.isLoading){
     return(
+      
       <View style={{flex: 1,justifyContent: 'center',alignItems:'center'}}>
         <ActivityIndicator size="large"/>
       </View>
     )
   }
+
+  
   return (
     <AuthContext.Provider value={authContext}>
+       
     <NavigationContainer>
       {loginState.userToken !== null ?(
-   
+  
     <Drawer.Navigator drawerContent={props=><DrawerContent {...props}/>}>
           <Drawer.Screen name="HomeDrawer" component={HomeStackScreen} />
           <Drawer.Screen name="userDetails" component={DetailsStackScreen} />

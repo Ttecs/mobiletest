@@ -22,7 +22,8 @@ const SplashScreen = ({navigation}) => {
         <View style={styles.header}>
            <Animatable.Image
                animation="bounce"
-               duration="1500"
+               iterationCount="infinite"
+               direction="alternate"
             style={styles.logo} source={require('../assets/logowhite.png')}
            resizeMode="contain"/>
         </View>

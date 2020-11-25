@@ -17,7 +17,7 @@ const DetailsStackScreen = ({navigation}) => (
             fontWeight: 'bold'
             }
         }}>
-            <DetailsStack.Screen name="Details" component={DetailsScreen} options={{
+            <DetailsStack.Screen name="Profile" component={DetailsScreen} options={{
             headerLeft: () => (
                 <Icon.Button name="ios-menu" size={25} backgroundColor="#434a54" onPress={() => navigation.openDrawer()}></Icon.Button>
             )

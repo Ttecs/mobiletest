@@ -16,7 +16,7 @@ const ReservationStackScreen = ({navigation}) => (
             }
         }}>
             <ReservationStack.Screen name="Home" component={ReservationScreen} options={{
-            title:'Overview',
+            title:'Reservations',
             headerLeft: () => (
                 <Icon.Button name="ios-menu" size={25} backgroundColor="#434a54" onPress={() => navigation.openDrawer()}></Icon.Button>
             )
